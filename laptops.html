@@ -1,0 +1,519 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Laptops - Mr. STREAM</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm 12mm;
+            background-color: #0b0f19; /* Deep tech dark background */
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #f1f5f9;
+            background-color: #0b0f19;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+
+        /* Full bleed header bar via negative margins */
+        .header-banner {
+            margin: -15mm -12mm 20px -12mm;
+            padding: 25px 12mm;
+            background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+            border-bottom: 3px solid #00FF00; /* Neon green accent */
+        }
+
+        .header-title {
+            font-size: 20pt;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .header-subtitle {
+            font-size: 11pt;
+            color: #00FF00;
+            margin: 5px 0 0 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .intro {
+            margin-bottom: 25px;
+            font-size: 10.5pt;
+            color: #94a3b8;
+            border-left: 3px solid #00FF00;
+            padding-left: 10px;
+        }
+
+        /* Products Grid / List */
+        .product-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            page-break-inside: avoid;
+        }
+
+        .product-header {
+            display: block;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .product-meta {
+            margin-top: 5px;
+            font-size: 9pt;
+            color: #00FF00;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .spec-grid {
+            display: table;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .spec-row {
+            display: table-row;
+        }
+
+        .spec-label {
+            display: table-cell;
+            width: 120px;
+            font-weight: bold;
+            color: #94a3b8;
+            padding: 3px 0;
+            font-size: 9pt;
+        }
+
+        .spec-value {
+            display: table-cell;
+            color: #cbd5e1;
+            padding: 3px 0;
+            font-size: 9pt;
+        }
+
+        .price-tag {
+            float: right;
+            background-color: #00FF00;
+            color: #000000;
+            font-weight: 800;
+            font-size: 13pt;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-top: -5px;
+        }
+
+        .warranty-badge {
+            display: inline-block;
+            background-color: #3b82f6;
+            color: #ffffff;
+            font-size: 8pt;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-banner">
+        <h1 class="header-title">Mr. STREAM</h1>
+        <div class="header-subtitle">Catálogo Exclusivo de Laptops</div>
+    </div>
+
+    <div class="intro">
+        Disponibilidad para entrega inmediata en Caracas. Todos nuestros equipos cuentan con <strong>1 año de garantía</strong> directa.
+    </div>
+
+    <!-- PRODUCTO 1 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$593,60</div>
+        <div class="product-header">
+            <h2 class="product-title">ASUS Vivobook 14 (X1404VA-I712512)</h2>
+            <div class="product-meta">Marca: ASUS</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core i7-1355U (13.ª Generación)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">12GB DDR4</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD de alta velocidad</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">14" Full HD (1920 x 1080)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Quiet Blue (Azul Silencioso)</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 2 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$779,10</div>
+        <div class="product-header">
+            <h2 class="product-title">ASUS F1605VA-WS74</h2>
+            <div class="product-meta">Marca: ASUS</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core i7-1355U (13.ª Generación)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">16GB RAM (2x8GB Dual Channel) DDR4</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD NVMe</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">16" Full HD Amplia</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11 Home</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Indie Black</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 3 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$1.001,70</div>
+        <div class="product-header">
+            <h2 class="product-title">ASUS Vivobook F1605VA-WS96</h2>
+            <div class="product-meta">Marca: ASUS</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core i9-13900H (Hasta 5.4GHz)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">16GB DDR4</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">1TB SSD NVMe (Ultra Capacidad)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Gráficos:</div>
+                <div class="spec-value">Intel Iris Xe Graphics</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">16" Full HD (1920x1080)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Cool Silver</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 4 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$630,70</div>
+        <div class="product-header">
+            <h2 class="product-title">Lenovo IdeaPad Slim 3 15IRU8</h2>
+            <div class="product-meta">Marca: LENOVO</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core i5-1335U (13.ª Generación)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">16GB RAM</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">256GB SSD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.6" Full HD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11 Home</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Arctic Grey</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 5 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$731,40</div>
+        <div class="product-header">
+            <h2 class="product-title">Lenovo IdeaPad Slim 3 15ARP10</h2>
+            <div class="product-meta">Marca: LENOVO</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">AMD Ryzen 7 7730U (Alto Rendimiento)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">16GB RAM</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.3" Confortable Display</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11 Home</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Luna Grey</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 6 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$620,10</div>
+        <div class="product-header">
+            <h2 class="product-title">Acer Aspire AG15-42P-R917</h2>
+            <div class="product-meta">Marca: ACER</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">AMD Ryzen 7 7730U (Excelente eficiencia)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">16GB DDR4</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.6" Full HD (FHS)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11 Home</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Pure Silver</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 7 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$641,30</div>
+        <div class="product-header">
+            <h2 class="product-title">Dell Inspiron 3593 Touchscreen</h2>
+            <div class="product-meta">Marca: DELL</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core i7-1065G7</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">12GB DDR4</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.6" con tecnología Touchscreen (Táctil)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11 (Actualizado de Win10)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Black (Negro Elegante)</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 8 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$630,70</div>
+        <div class="product-header">
+            <h2 class="product-title">HP Laptop 15-FD2050WM Touchscreen</h2>
+            <div class="product-meta">Marca: HP</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core Ultra 5 225U (Nueva Generación)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">8GB DDR5 SDRAM (Última tecnología de memoria)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.6" FHD IPS LED Multi-Touch (Táctil capacitivo)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 9 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$736,70</div>
+        <div class="product-header">
+            <h2 class="product-title">HP 15-FD0557NR</h2>
+            <div class="product-meta">Marca: HP</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">Intel Core i7-1255U</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">12GB DDR4 RAM</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">512GB SSD M.2 (Super veloz)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.6" FHD IPS Display</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Color:</div>
+                <div class="spec-value">Gris</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+    <!-- PRODUCTO 10 -->
+    <div class="product-card clearfix">
+        <div class="price-tag">$371,00</div>
+        <div class="product-header">
+            <h2 class="product-title">Compaq QL15R3HE16256</h2>
+            <div class="product-meta">Marca: COMPAQ</div>
+        </div>
+        <div class="spec-grid">
+            <div class="spec-row">
+                <div class="spec-label">Procesador:</div>
+                <div class="spec-value">AMD Ryzen 3 3200U</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Memoria RAM:</div>
+                <div class="spec-value">16GB RAM (Excelente multitarea)</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Almacenamiento:</div>
+                <div class="spec-value">256GB SSD</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Pantalla:</div>
+                <div class="spec-value">15.6" Confort View</div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-label">Sistema Operativo:</div>
+                <div class="spec-value">Windows 11 Home</div>
+            </div>
+        </div>
+        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    </div>
+
+</body>
+</html>
+
+catalogo_laptops_mrstream.html
+Mostrando catalogo_laptops_mrstream.html.
