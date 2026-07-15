@@ -5,19 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mr. STREAM - Tecnología sin límites</title>
     <style>
-        * {
+        html,
+        body {
+            min-width: 0;
+            max-width: 100vw;
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body, html {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: 100vw;
+            overflow-x: hidden;
             width: 100%;
             height: 100%;
             overflow: hidden;
+        }
             background-color: #000; /* Fondo negro por si tarda en cargar la imagen */
             display: flex;
             justify-content: center;
             align-items: center;
+                    position: relative;
         }
         .bg-image {
             width: 100%;
@@ -36,7 +47,7 @@
 <body>
 
     <!-- Cargamos tu imagen -->
-    <img src="imagen.jpeg" alt="Mr. STREAM" class="bg-image">
+    <img loading="lazy" src="imagen.jpeg" alt="Mr. STREAM" class="bg-image">
 
 </body>
 </html>

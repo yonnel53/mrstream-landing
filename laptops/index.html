@@ -35,10 +35,16 @@
 
         /* Full bleed header bar via negative margins */
         .header-banner {
-            margin: -15mm -12mm 20px -12mm;
+            /* Evita overflow en móvil: sustituye márgenes negativos por desplazamiento y ancho calculado */
+            position: relative;
+            left: -12mm;
+            width: calc(100% + 24mm);
+            margin: 0 0 20px 0;
             padding: 25px 12mm;
             background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
             border-bottom: 3px solid #00FF00; /* Neon green accent */
+            overflow-x: hidden;
+            box-sizing: border-box;
         }
 
         .header-title {
@@ -405,9 +411,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../images/Laptop-Vivobook-1.png"></li>
-                    <li class="gallery-slide"><img src="../images/Laptop-Vivobook-2.png" alt="Imagen 2 del modelo" data-full="../images/Laptop-Vivobook-2.png"></li>
-                    <li class="gallery-slide"><img src="../images/Laptop-Vivobook-3.png" alt="Imagen 3 del modelo" data-full="../images/Laptop-Vivobook-3.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../images/Laptop-Vivobook-1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/Laptop-Vivobook-2.png" alt="Imagen 2 del modelo" data-full="../images/Laptop-Vivobook-2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/Laptop-Vivobook-3.png" alt="Imagen 3 del modelo" data-full="../images/Laptop-Vivobook-3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -458,9 +464,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -515,9 +521,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../Laptop-Vivobook-1.png"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../Laptop-Vivobook-1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -568,9 +574,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -621,9 +627,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -674,9 +680,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -727,9 +733,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -776,9 +782,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -829,9 +835,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -878,9 +884,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
-                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -896,7 +902,7 @@
 
     <div class="modal-overlay" id="image-modal" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
         <button class="modal-close" id="modal-close" aria-label="Cerrar imagen">×</button>
-        <img id="modal-image" src="" alt="Imagen ampliada" />
+        <img loading="lazy" id="modal-image" src="" alt="Imagen ampliada" />
     </div>
 
     <script>
