@@ -3,6 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Laptops - Mr. STREAM</title>
     <style>
         @page {
@@ -21,8 +22,8 @@
             padding: 0;
             color: #f1f5f9;
             background-color: #0b0f19;
-            font-size: 10pt;
-            line-height: 1.4;
+            font-size: 12px;
+            line-height: 1.5;
         }
 
         /* Full bleed header bar via negative margins */
@@ -143,6 +144,210 @@
             clear: both;
             display: table;
         }
+
+        .product-gallery,
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            background-color: #111827;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+
+        .product-gallery .gallery-track-container,
+        .carousel-track-container {
+            overflow: hidden;
+        }
+
+        .gallery-track,
+        .carousel-track {
+            display: flex;
+            transition: transform 0.35s ease;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .gallery-slide,
+        .carousel-slide {
+            min-width: 100%;
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.96), rgba(17, 24, 39, 0.65));
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .gallery-slide img,
+        .carousel-slide img {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 14px;
+            object-fit: contain;
+            display: block;
+            cursor: pointer;
+            background: rgba(15, 23, 42, 0.92);
+            padding: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .gallery-button,
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background-color: rgba(0, 255, 0, 0.15);
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .gallery-button:hover,
+        .carousel-button:hover {
+            background-color: rgba(0, 255, 0, 0.28);
+        }
+
+        .gallery-button.prev,
+        .carousel-button.prev {
+            left: 12px;
+        }
+
+        .gallery-button.next,
+        .carousel-button.next {
+            right: 12px;
+        }
+
+        .gallery-dots,
+        .carousel-nav {
+            text-align: center;
+            padding: 10px 0 8px;
+        }
+
+        .gallery-indicator,
+        .carousel-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #94a3b8;
+            background: transparent;
+            margin: 0 4px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .gallery-indicator.current-slide,
+        .carousel-indicator.current-slide {
+            background: #00FF00;
+            border-color: #00FF00;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-overlay img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 12px;
+            box-shadow: 0 0 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            border: none;
+            background: rgba(0, 0, 0, 0.45);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .header-banner {
+                padding: 18px 14px;
+            }
+
+            .header-title {
+                font-size: 18pt;
+            }
+
+            .header-subtitle {
+                font-size: 10pt;
+            }
+
+            .product-card {
+                padding: 14px;
+            }
+
+            .product-title {
+                font-size: 13pt;
+            }
+
+            .spec-label,
+            .spec-value {
+                font-size: 10pt;
+            }
+
+            .price-tag {
+                float: none;
+                display: inline-block;
+                margin: 0 0 10px 0;
+            }
+
+            .carousel-button {
+                width: 34px;
+                height: 34px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+
+            .header-banner {
+                padding: 16px 12px;
+            }
+
+            .product-card {
+                padding: 12px;
+            }
+
+            .product-title {
+                font-size: 12pt;
+            }
+
+            .spec-label,
+            .spec-value {
+                font-size: 9pt;
+            }
+
+            .carousel-button {
+                width: 32px;
+                height: 32px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -189,6 +394,23 @@
                 <div class="spec-value">Quiet Blue (Azul Silencioso)</div>
             </div>
         </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../images/Laptop-Vivobook-1.png"></li>
+                    <li class="gallery-slide"><img src="../images/Laptop-Vivobook-2.png" alt="Imagen 2 del modelo" data-full="../images/Laptop-Vivobook-2.png"></li>
+                    <li class="gallery-slide"><img src="../images/Laptop-Vivobook-3.png" alt="Imagen 3 del modelo" data-full="../images/Laptop-Vivobook-3.png"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
+            </div>
+        </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 
@@ -223,6 +445,23 @@
             <div class="spec-row">
                 <div class="spec-label">Color:</div>
                 <div class="spec-value">Indie Black</div>
+            </div>
+        </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
             </div>
         </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
@@ -265,6 +504,23 @@
                 <div class="spec-value">Cool Silver</div>
             </div>
         </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../Laptop-Vivobook-1.png"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
+            </div>
+        </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 
@@ -299,6 +555,23 @@
             <div class="spec-row">
                 <div class="spec-label">Color:</div>
                 <div class="spec-value">Arctic Grey</div>
+            </div>
+        </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
             </div>
         </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
@@ -337,6 +610,23 @@
                 <div class="spec-value">Luna Grey</div>
             </div>
         </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
+            </div>
+        </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 
@@ -371,6 +661,23 @@
             <div class="spec-row">
                 <div class="spec-label">Color:</div>
                 <div class="spec-value">Pure Silver</div>
+            </div>
+        </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
             </div>
         </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
@@ -409,6 +716,23 @@
                 <div class="spec-value">Black (Negro Elegante)</div>
             </div>
         </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
+            </div>
+        </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 
@@ -439,6 +763,23 @@
             <div class="spec-row">
                 <div class="spec-label">Sistema Operativo:</div>
                 <div class="spec-value">Windows 11</div>
+            </div>
+        </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
             </div>
         </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
@@ -477,6 +818,23 @@
                 <div class="spec-value">Gris</div>
             </div>
         </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
+            </div>
+        </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 
@@ -509,9 +867,113 @@
                 <div class="spec-value">Windows 11 Home</div>
             </div>
         </div>
+
+        <div class="product-gallery">
+            <div class="gallery-track-container">
+                <ul class="gallery-track">
+                    <li class="gallery-slide current-slide"><img src="../imagen.jpeg" alt="Imagen 1 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 2 del modelo" data-full="../imagen.jpeg"></li>
+                    <li class="gallery-slide"><img src="../imagen.jpeg" alt="Imagen 3 del modelo" data-full="../imagen.jpeg"></li>
+                </ul>
+            </div>
+            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
+            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
+            <div class="gallery-dots">
+                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
+                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
+            </div>
+        </div>
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 
+    <div class="modal-overlay" id="image-modal" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+        <button class="modal-close" id="modal-close" aria-label="Cerrar imagen">×</button>
+        <img id="modal-image" src="" alt="Imagen ampliada" />
+    </div>
+
+    <script>
+        const modalOverlay = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const modalClose = document.getElementById('modal-close');
+
+        const openModal = (src, alt) => {
+            modalImage.src = src;
+            modalImage.alt = alt;
+            modalOverlay.classList.add('open');
+        };
+
+        const closeModal = () => {
+            modalOverlay.classList.remove('open');
+            modalImage.src = '';
+        };
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', e => {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        document.querySelectorAll('.product-gallery').forEach(gallery => {
+            const track = gallery.querySelector('.gallery-track');
+            const slides = Array.from(track.children);
+            const prevButton = gallery.querySelector('.gallery-button.prev');
+            const nextButton = gallery.querySelector('.gallery-button.next');
+            const dots = Array.from(gallery.querySelectorAll('.gallery-indicator'));
+
+            const setSlidePosition = (slide, index) => {
+                slide.style.left = slide.getBoundingClientRect().width * index + 'px';
+            };
+
+            const moveToSlide = (track, currentSlide, targetSlide) => {
+                track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
+                currentSlide.classList.remove('current-slide');
+                targetSlide.classList.add('current-slide');
+            };
+
+            const updateDots = (currentDot, targetDot) => {
+                if (!currentDot || !targetDot) return;
+                currentDot.classList.remove('current-slide');
+                targetDot.classList.add('current-slide');
+            };
+
+            slides.forEach(setSlidePosition);
+            window.addEventListener('resize', () => slides.forEach(setSlidePosition));
+
+            prevButton.addEventListener('click', () => {
+                const currentSlide = track.querySelector('.current-slide');
+                const prevSlide = currentSlide.previousElementSibling || slides[slides.length - 1];
+                const currentDot = gallery.querySelector('.gallery-indicator.current-slide');
+                const prevDot = currentDot.previousElementSibling || dots[dots.length - 1];
+                moveToSlide(track, currentSlide, prevSlide);
+                updateDots(currentDot, prevDot);
+            });
+
+            nextButton.addEventListener('click', () => {
+                const currentSlide = track.querySelector('.current-slide');
+                const nextSlide = currentSlide.nextElementSibling || slides[0];
+                const currentDot = gallery.querySelector('.gallery-indicator.current-slide');
+                const nextDot = currentDot.nextElementSibling || dots[0];
+                moveToSlide(track, currentSlide, nextSlide);
+                updateDots(currentDot, nextDot);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const currentSlide = track.querySelector('.current-slide');
+                    const currentDot = gallery.querySelector('.gallery-indicator.current-slide');
+                    const targetSlide = slides[index];
+                    moveToSlide(track, currentSlide, targetSlide);
+                    updateDots(currentDot, dot);
+                });
+            });
+
+            gallery.querySelectorAll('.gallery-slide img').forEach(img => {
+                img.addEventListener('click', () => {
+                    openModal(img.dataset.full || img.src, img.alt || 'Imagen ampliada');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
 
