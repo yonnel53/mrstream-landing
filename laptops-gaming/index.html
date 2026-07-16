@@ -7,58 +7,52 @@
     <style>
         * { box-sizing: border-box; }
         img { max-width: 100%; height: auto; display: block; }
-        html, body { min-width: 0; max-width: 100vw; overflow-x: hidden; }
-        body { margin:0; font-family: 'Segoe UI', Roboto, Arial, sans-serif; background:#0b0f19; color:#e6eef8; line-height:1.4; padding:18px; }
-        html, body {
-            overflow-y: auto;
+        html, body { min-width: 0; max-width: 100vw; overflow-x: hidden; overflow-y: auto; }
+        body { margin:0 auto; max-width:1120px; font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background:#0b0f19; color:#f1f5f9; line-height:1.5; font-size:12px; padding:18px; }
+        .header-banner { position:relative; left:0; width:100%; margin:0 0 20px 0; padding:25px 18px; background:linear-gradient(135deg,#111827 0%,#1e293b 100%); border-bottom:3px solid #00ff00; overflow-x:hidden; box-sizing:border-box; border-radius:10px; }
+        .header-title { margin:0; font-size:20pt; font-weight:800; color:#ffffff; letter-spacing:0.5px; text-transform:uppercase; }
+        .header-subtitle { margin:5px 0 0 0; font-size:11pt; color:#00ff00; font-weight:600; letter-spacing:1px; }
+        .intro { margin-bottom:25px; font-size:10.5pt; color:#94a3b8; border-left:3px solid #00ff00; padding-left:10px; line-height:1.5; }
+        .product-card { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:15px; margin-bottom:15px; }
+        .product-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; border-bottom:1px solid #334155; padding-bottom:8px; margin-bottom:10px; }
+        .product-title { font-size:12pt; margin:0; font-weight:700; color:#ffffff; }
+        .product-meta { color:#00ff00; font-size:9pt; font-weight:600; text-transform:uppercase; margin-top:4px; }
+        .price-tag { background:#00ff00; color:#000; font-weight:800; padding:4px 12px; border-radius:4px; font-size:13pt; white-space:nowrap; }
+        .spec-grid { display:grid; grid-template-columns:120px 1fr; gap:6px 12px; margin-top:8px; color:#cbd5e1; }
+        .spec-label { color:#94a3b8; font-weight:700; }
+        .warranty { display:inline-block; margin-top:10px; background:#3b82f6; color:#ffffff; padding:4px 8px; border-radius:4px; font-weight:700; font-size:8pt; }
+        .product-gallery { position:relative; margin-top:12px; overflow:hidden; border-radius:12px; border:1px solid #334155; background:#111827; touch-action:pan-y; }
+        .gallery-track { display:flex; transition:transform .35s ease; list-style:none; padding:0; margin:0; }
+        .gallery-slide { min-width:100%; display:flex; justify-content:center; padding:12px; background:radial-gradient(circle at top left, rgba(30,41,59,0.96), rgba(17,24,39,0.65)); box-shadow:inset 0 0 0 1px rgba(255,255,255,0.04); }
+        .gallery-slide img { width:100%; max-width:450px; border-radius:14px; object-fit:contain; cursor:pointer; background:rgba(15,23,42,0.92); padding:14px; border:1px solid rgba(255,255,255,0.1); box-shadow:0 18px 35px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.04); }
+        .gallery-button { position:absolute; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:999px; border:none; background:rgba(0,255,0,0.15); color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:18px; line-height:1; padding:0; }
+        .gallery-button:hover { background:rgba(0,255,0,0.28); }
+        .gallery-button.prev { left:12px; }
+        .gallery-button.next { right:12px; }
+        .gallery-dots { text-align:center; padding:10px 0 8px; }
+        .gallery-indicator { width:10px; height:10px; display:inline-block; border-radius:50%; border:1px solid #94a3b8; background:transparent; margin:0 4px; cursor:pointer; }
+        .gallery-indicator.current-slide { background:#00ff00; border-color:#00ff00; }
+        .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; z-index:999; padding:20px; }
+        .modal-overlay.open { display:flex; }
+        .modal-overlay img { max-width:95%; max-height:95%; border-radius:8px; }
+        .modal-close { position:absolute; top:18px; right:18px; background:rgba(0,0,0,0.5); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer; }
+        @media (min-width:769px) {
+            body { padding:24px 28px 32px; }
+            .header-banner { padding:28px 24px; }
+            .intro { padding-left:12px; margin-bottom:24px; }
         }
-        .header { background:linear-gradient(135deg,#111827 0%,#1e293b 100%); padding:18px; border-radius:8px; border:3px solid #0b0f19; margin-bottom:16px; overflow-x: hidden; position: relative; width: 100%; box-sizing: border-box; }
-        .header h1 { margin:0; font-size:20px; color:#fff; }
-        .header p { margin:6px 0 0; color:#00ff00; font-weight:600 }
-        .product-card { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:14px; margin-bottom:14px; }
-        .product-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; border-bottom:1px solid #334155; padding-bottom:8px; margin-bottom:10px }
-        .product-title { font-size:14px; margin:0; font-weight:800 }
-        .product-meta { color:#94a3b8; font-size:12px; font-weight:600 }
-        .price-tag { background:#00ff00; color:#000; font-weight:800; padding:6px 10px; border-radius:6px; }
-        .spec-grid { display:grid; grid-template-columns:120px 1fr; gap:6px 12px; margin-top:8px; color:#cbd5e1 }
-        .spec-label { color:#94a3b8; font-weight:700 }
-        .warranty { display:inline-block; margin-top:10px; background:#3b82f6; padding:4px 8px; border-radius:6px; font-weight:700 }
 
-        /* Gallery per product */
-        .product-gallery { position:relative; margin-top:12px; overflow:hidden; border-radius:10px; border:1px solid #334155; background:#111827 }
-        .gallery-track { display:flex; transition:transform .35s ease; list-style:none; padding:0; margin:0 }
-        .gallery-slide { min-width:100%; display:flex; justify-content:center; padding:10px; background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.96), rgba(17, 24, 39, 0.65)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04); }
-        .gallery-slide img { width:100%; max-width:480px; border-radius:14px; object-fit:contain; cursor:pointer; background: rgba(15, 23, 42, 0.92); padding:14px; border:1px solid rgba(255,255,255,0.1); box-shadow:0 18px 35px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.04); }
-        .gallery-button { position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; border:none; background:rgba(0,255,0,.12); color:#fff; cursor:pointer }
-        .gallery-button.prev { left:10px }
-        .gallery-button.next { right:10px }
-        .gallery-dots { text-align:center; padding:8px 0 }
-        .gallery-indicator { width:10px; height:10px; display:inline-block; border-radius:50%; border:1px solid #94a3b8; margin:0 4px; cursor:pointer }
-        .gallery-indicator.current-slide { background:#00ff00; border-color:#00ff00 }
-
-        /* Modal */
-        .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:999 }
-        .modal-overlay.open { display:flex }
-        .modal-overlay img { max-width:95%; max-height:95%; border-radius:8px }
-        .modal-close { position:absolute; top:18px; right:18px; background:rgba(0,0,0,.5); border:none; color:#fff; width:36px; height:36px; border-radius:50%; font-size:18px; cursor:pointer }
-
-        @media (max-width:768px){ .spec-grid{grid-template-columns:100px 1fr} .product-title{font-size:15px} }
-
-        @media (max-width:768px) {
-            .header {
-                text-align: center;
-                padding-left: 12px;
-                padding-right: 12px;
-            }
-            .header h1 { font-size: 18px; }
-            .header p { font-size: 13px; margin-top: 6px; }
-        }
+        @media (max-width:768px){ body { padding:18px; } .spec-grid{grid-template-columns:100px 1fr} .product-title{font-size:15px} .header-banner { padding:18px 14px; text-align:center; } .header-title { font-size:18pt; } .header-subtitle { font-size:10pt; } .gallery-button { width:34px; height:34px; } }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Mr. STREAM — Laptops Gaming</h1>
-        <p>Modelos y especificaciones importadas. Haz clic en una imagen para ampliarla.</p>
+    <div class="header-banner">
+        <h1 class="header-title">Mr. STREAM</h1>
+        <div class="header-subtitle">Catálogo Exclusivo de Laptops Gaming</div>
+    </div>
+
+    <div class="intro">
+        Disponibilidad para entrega inmediata en Caracas. Todos nuestros equipos cuentan con <strong>1 año de garantía</strong> directa.
     </div>
 
     <!-- Product list generated from image -->
@@ -573,6 +567,8 @@
             const prev = gallery.querySelector('.gallery-button.prev');
             const next = gallery.querySelector('.gallery-button.next');
             const dots = Array.from(gallery.querySelectorAll('.gallery-indicator'));
+            let touchStartX = 0;
+            let touchEndX = 0;
 
             const setPos = (slide, i) => slide.style.left = (slide.getBoundingClientRect().width * i) + 'px';
             const moveTo = (current, target) => { track.style.transform = 'translateX(-'+ target.style.left +')'; current.classList.remove('current-slide'); target.classList.add('current-slide'); };
@@ -606,6 +602,18 @@
                 moveTo(current, target);
                 updateDots(currentDot, dot);
             }));
+
+            gallery.addEventListener('touchstart', event => {
+                touchStartX = event.touches[0].clientX;
+            }, { passive: true });
+
+            gallery.addEventListener('touchend', event => {
+                touchEndX = event.changedTouches[0].clientX;
+                const delta = touchEndX - touchStartX;
+                if (Math.abs(delta) < 50) return;
+                if (delta < 0) next.click();
+                else prev.click();
+            });
 
             // click to open modal
             gallery.querySelectorAll('.gallery-slide img').forEach(img => {

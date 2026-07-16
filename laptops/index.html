@@ -166,6 +166,7 @@
             border: 1px solid #334155;
             border-radius: 12px;
             margin-top: 16px;
+            touch-action: pan-y;
         }
 
         .product-gallery .gallery-track-container,
@@ -214,11 +215,17 @@
             border: none;
             background-color: rgba(0, 255, 0, 0.15);
             color: #ffffff;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
             cursor: pointer;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            line-height: 1;
+            padding: 0;
         }
 
         .gallery-button:hover,
@@ -944,6 +951,9 @@
                 slide.style.left = slide.getBoundingClientRect().width * index + 'px';
             };
 
+            let touchStartX = 0;
+            let touchEndX = 0;
+
             const moveToSlide = (track, currentSlide, targetSlide) => {
                 track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
                 currentSlide.classList.remove('current-slide');
@@ -985,6 +995,18 @@
                     moveToSlide(track, currentSlide, targetSlide);
                     updateDots(currentDot, dot);
                 });
+            });
+
+            gallery.addEventListener('touchstart', event => {
+                touchStartX = event.touches[0].clientX;
+            }, { passive: true });
+
+            gallery.addEventListener('touchend', event => {
+                touchEndX = event.changedTouches[0].clientX;
+                const delta = touchEndX - touchStartX;
+                if (Math.abs(delta) < 50) return;
+                if (delta < 0) nextButton.click();
+                else prevButton.click();
             });
 
             gallery.querySelectorAll('.gallery-slide img').forEach(img => {
