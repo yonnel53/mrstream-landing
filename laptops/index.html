@@ -205,6 +205,37 @@
             padding: 14px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .gallery-slide img.loaded,
+        .carousel-slide img.loaded {
+            opacity: 1;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .image-skeleton {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0), rgba(148, 163, 184, 0.16), rgba(15, 23, 42, 0));
+            background-size: 200% 100%;
+            animation: skeleton-shimmer 1.2s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes skeleton-shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
         }
 
         .gallery-button,
@@ -641,9 +672,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 1 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 2 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 3 del modelo" data-full="../images/imagen.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/lenovo1.png" alt="Imagen 1 del modelo" data-full="../images/lenovo1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/lenovo2.png" alt="Imagen 2 del modelo" data-full="../images/lenovo2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/lenovo3.png" alt="Imagen 3 del modelo" data-full="../images/lenovo3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -694,9 +725,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 1 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 2 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 3 del modelo" data-full="../images/imagen.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/acer1.png" alt="Imagen 1 del modelo" data-full="../images/acer1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/acer2.png" alt="Imagen 2 del modelo" data-full="../images/acer2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/acer3.png" alt="Imagen 3 del modelo" data-full="../images/acer3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -747,9 +778,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 1 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 2 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 3 del modelo" data-full="../images/imagen.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dell1.png" alt="Imagen 1 del modelo" data-full="../images/dell1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/dell2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/dell3.png" alt="Imagen 3 del modelo" data-full="../images/dell3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -796,9 +827,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 1 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 2 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 3 del modelo" data-full="../images/imagen.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/hp1.png" alt="Imagen 1 del modelo" data-full="../images/hp1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/hp2.png" alt="Imagen 2 del modelo" data-full="../images/hp2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/hp3.png" alt="Imagen 3 del modelo" data-full="../images/hp3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -849,9 +880,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 1 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 2 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 3 del modelo" data-full="../images/imagen.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/hp1.png" alt="Imagen 1 del modelo" data-full="../images/hp1 .png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/hp2.png" alt="Imagen 2 del modelo" data-full="../images/hp2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/hp3.png" alt="Imagen 3 del modelo" data-full="../images/hp3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -898,9 +929,9 @@
         <div class="product-gallery">
             <div class="gallery-track-container">
                 <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 1 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 2 del modelo" data-full="../images/imagen.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/imagen.png" alt="Imagen 3 del modelo" data-full="../images/imagen.png"></li>
+                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/compaq1.png" alt="Imagen 1 del modelo" data-full="../images/compaq1.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/compaq2.png" alt="Imagen 2 del modelo" data-full="../images/compaq2.png"></li>
+                    <li class="gallery-slide"><img loading="lazy" src="../images/compaq3.png" alt="Imagen 3 del modelo" data-full="../images/compaq3.png"></li>
                 </ul>
             </div>
             <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
@@ -923,6 +954,7 @@
         const modalOverlay = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
         const modalClose = document.getElementById('modal-close');
+        const placeholderImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
         const openModal = (src, alt) => {
             modalImage.src = src;
@@ -935,10 +967,67 @@
             modalImage.src = '';
         };
 
+        const showImage = (img) => {
+            img.classList.add('loaded');
+            const frame = img.closest('.image-frame');
+            if (frame) {
+                const skeleton = frame.querySelector('.image-skeleton');
+                if (skeleton) skeleton.remove();
+            }
+        };
+
+        const loadImage = (img) => {
+            const source = img.dataset.src || img.getAttribute('src');
+            if (!source || img.dataset.loaded === 'true') return;
+            img.dataset.loaded = 'true';
+            img.src = source;
+            if (img.complete) {
+                showImage(img);
+            } else {
+                img.addEventListener('load', () => showImage(img), { once: true });
+            }
+        };
+
         modalClose.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', e => {
             if (e.target === modalOverlay) closeModal();
         });
+
+        const galleryImages = Array.from(document.querySelectorAll('.gallery-slide img'));
+        galleryImages.forEach((img, index) => {
+            const source = img.getAttribute('src');
+            const frame = document.createElement('div');
+            frame.className = 'image-frame';
+            const skeleton = document.createElement('span');
+            skeleton.className = 'image-skeleton';
+            img.parentNode.insertBefore(frame, img);
+            frame.appendChild(skeleton);
+            frame.appendChild(img);
+            img.dataset.src = img.dataset.full || source;
+            img.removeAttribute('loading');
+            img.src = placeholderImage;
+            img.setAttribute('decoding', 'async');
+            img.classList.add('is-loading');
+
+            if (index < 3) {
+                loadImage(img);
+            }
+        });
+
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadImage(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '220px 0px 220px 0px' });
+
+            galleryImages.slice(3).forEach(img => imageObserver.observe(img));
+        } else {
+            galleryImages.forEach(img => loadImage(img));
+        }
 
         document.querySelectorAll('.product-gallery').forEach(gallery => {
             const track = gallery.querySelector('.gallery-track');
@@ -1011,13 +1100,11 @@
 
             gallery.querySelectorAll('.gallery-slide img').forEach(img => {
                 img.addEventListener('click', () => {
-                    openModal(img.dataset.full || img.src, img.alt || 'Imagen ampliada');
+                    loadImage(img);
+                    openModal(img.dataset.full || img.dataset.src || img.src, img.alt || 'Imagen ampliada');
                 });
             });
         });
     </script>
 </body>
 </html>
-
-catalogo_laptops_mrstream.html
-Mostrando catalogo_laptops_mrstream.html.
