@@ -23,27 +23,28 @@
         }
 
         body {
+            margin: 0 auto;
+            max-width: 1120px;
+            padding: 18px;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             color: #f1f5f9;
             background-color: #0b0f19;
             font-size: 12px;
             line-height: 1.5;
         }
 
-        /* Full bleed header bar via negative margins */
         .header-banner {
-            /* Evita overflow en móvil: sustituye márgenes negativos por desplazamiento y ancho calculado */
+            text-align: center;
             position: relative;
-            left: -12mm;
-            width: calc(100% + 24mm);
+            left: 0;
+            width: 100%;
             margin: 0 0 20px 0;
-            padding: 25px 12mm;
+            padding: 25px 18px;
             background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
-            border-bottom: 3px solid #00FF00; /* Neon green accent */
+            border-bottom: 3px solid #00FF00;
             overflow-x: hidden;
             box-sizing: border-box;
+            border-radius: 10px;
         }
 
         .header-title {
@@ -131,13 +132,19 @@
 
         .price-tag {
             float: right;
-            background-color: #00FF00;
-            color: #000000;
+            background-color: #1a991a;
+            color: #faf1f1;
             font-weight: 800;
             font-size: 13pt;
             padding: 4px 12px;
             border-radius: 4px;
             margin-top: -5px;
+            clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+        }
+
+        .price-tag .price-value {
+            position: relative;
+            right: 10%;
         }
 
         .warranty-badge {
@@ -335,7 +342,7 @@
 
         @media (max-width: 768px) {
             .header-banner {
-                padding: 18px 14px;
+                padding: 0;
                 left: 0; /* reset full-bleed offset on tablet/mobile */
                 width: 100%;
                 text-align: center;
@@ -363,10 +370,21 @@
             }
 
             .price-tag {
-                float: none;
-                display: inline-block;
-                margin: 0 0 10px 0;
-            }
+            float: right;
+            background-color: #1a991a;
+            color: #faf1f1;
+            font-weight: 800;
+            font-size: 13pt;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-top: -5px;
+            clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+        }
+
+        .price-tag .price-value {
+            position: relative;
+            right: 10%;
+        }
 
             .carousel-button {
                 width: 34px;
@@ -380,7 +398,7 @@
             }
 
             .header-banner {
-                padding: 16px 12px;
+                padding: 0;
                 left: 0;
                 width: 100%;
                 text-align: center;
@@ -419,7 +437,7 @@
 
     <!-- PRODUCTO 1 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$593,60</div>
+        <div class="price-tag"><div class="price-value">$593,60</div></div>
         <div class="product-header">
             <h2 class="product-title">ASUS Vivobook 14 (X1404VA-I712512)</h2>
             <div class="product-meta">Marca: ASUS</div>
@@ -472,7 +490,7 @@
 
     <!-- PRODUCTO 2 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$779,10</div>
+        <div class="price-tag"><div class="price-value">$779,10</div></div>
         <div class="product-header">
             <h2 class="product-title">ASUS F1605VA-WS74</h2>
             <div class="product-meta">Marca: ASUS</div>
@@ -525,7 +543,7 @@
 
     <!-- PRODUCTO 3 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$1.001,70</div>
+        <div class="price-tag"><div class="price-value">$1.001,70</div></div>
         <div class="product-header">
             <h2 class="product-title">ASUS Vivobook F1605VA-WS96</h2>
             <div class="product-meta">Marca: ASUS</div>
@@ -583,7 +601,7 @@
 
     <!-- PRODUCTO 4 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$630,70</div>
+        <div class="price-tag"><div class="price-value">$630,70</div></div>
         <div class="product-header">
             <h2 class="product-title">Lenovo IdeaPad Slim 3 15IRU8</h2>
             <div class="product-meta">Marca: LENOVO</div>
@@ -636,7 +654,7 @@
 
     <!-- PRODUCTO 5 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$731,40</div>
+        <div class="price-tag"><div class="price-value">$731,40</div></div>
         <div class="product-header">
             <h2 class="product-title">Lenovo IdeaPad Slim 3 15ARP10</h2>
             <div class="product-meta">Marca: LENOVO</div>
@@ -689,7 +707,7 @@
 
     <!-- PRODUCTO 6 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$620,10</div>
+        <div class="price-tag"><div class="price-value">$620,10</div></div>
         <div class="product-header">
             <h2 class="product-title">Acer Aspire AG15-42P-R917</h2>
             <div class="product-meta">Marca: ACER</div>
@@ -742,7 +760,7 @@
 
     <!-- PRODUCTO 7 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$641,30</div>
+        <div class="price-tag"><div class="price-value">$641,30</div></div>
         <div class="product-header">
             <h2 class="product-title">Dell Inspiron 3593 Touchscreen</h2>
             <div class="product-meta">Marca: DELL</div>
@@ -795,7 +813,7 @@
 
     <!-- PRODUCTO 8 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$630,70</div>
+        <div class="price-tag"><div class="price-value">$630,70</div></div>
         <div class="product-header">
             <h2 class="product-title">HP Laptop 15-FD2050WM Touchscreen</h2>
             <div class="product-meta">Marca: HP</div>
@@ -844,7 +862,7 @@
 
     <!-- PRODUCTO 9 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$736,70</div>
+        <div class="price-tag"><div class="price-value">$736,70</div></div>
         <div class="product-header">
             <h2 class="product-title">HP 15-FD0557NR</h2>
             <div class="product-meta">Marca: HP</div>
@@ -897,7 +915,7 @@
 
     <!-- PRODUCTO 10 -->
     <div class="product-card clearfix">
-        <div class="price-tag">$371,00</div>
+        <div class="price-tag"><div class="price-value">$371,00</div></div>
         <div class="product-header">
             <h2 class="product-title">Compaq QL15R3HE16256</h2>
             <div class="product-meta">Marca: COMPAQ</div>
