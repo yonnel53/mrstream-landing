@@ -47,7 +47,7 @@
 
         .hero-title {
             position: fixed;
-            top: 42%;
+            top: 35%;
             left: 50%;
             z-index: 1;
             width: min(92vw, 900px);
@@ -80,7 +80,7 @@
         .catalog-button {
             position: fixed;
             left: 50%;
-            bottom: 188px;
+            top: 70%;
             z-index: 2;
             transform: translateX(-50%);
             display: inline-block;
@@ -106,10 +106,49 @@
             transform: translateX(-50%) translateY(-2px);
         }
 
-      
+        .contact-panel {
+            position: fixed;
+            left: 50%;
+            top: 80%;
+            z-index: 2;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: #f1ffe8;
+            font-weight: 800;
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+        }
 
         @media (max-width: 767px) {
-            
+            .hero-title {
+                top: 32%;
+            }
+
+            .catalog-button {
+                top: 65%;
+                width: calc(100% - 32px);
+                padding: 16px 20px;
+            }
+
+            .contact-panel {
+                top: 85%;
+                width: 100%;
+            }
+
+            .whatsapp-links {
+                width: calc(100% - 32px);
+                justify-content: center;
+            }
+
+            .whatsapp-link {
+                flex: 1;
+                justify-content: center;
+                padding: 9px 8px;
+                font-size: 0.78rem;
+            }
         }
     </style>
 </head>
