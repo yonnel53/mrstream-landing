@@ -1,6 +1,9 @@
 html {
     min-height: 100%;
-    background: url("fondo.webp") center center / cover no-repeat fixed;
+    
+    background: 
+    url('fondo.webp') center center / cover no-repeat fixed,
+    radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
 }
 
 body {
@@ -108,7 +111,9 @@ body {
 
 @media (max-width: 767px) {
     html {
-        background-image: url("fondo-mobile.webp");
+        background-image: url("fondo-mobile.webp"),
+        radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+
     }
     .catalog-button {
                 width: calc(80% - 32px);
