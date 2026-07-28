@@ -67,7 +67,7 @@
         .catalog-buttons {
             position: fixed;
             left: 50%;
-            top: 70%;
+            top: 64%;
             z-index: 2;
             transform: translateX(-50%);
             display: flex;
@@ -81,9 +81,9 @@
             display: inline-block;
             width: 100%;
             padding: 16px 24px;
-            border: 2px solid #b7ff3c;
+            border: 2px solid rgba(183, 255, 60, 0.95);
             border-radius: 10px;
-            background: rgba(3, 20, 8, 0.9);
+            background: rgba(3, 20, 8, 0.95);
             color: #ffffff;
             font-size: clamp(1rem, 2vw, 1.4rem);
             font-weight: 800;
@@ -91,21 +91,21 @@
             text-align: center;
             text-decoration: none;
             text-transform: uppercase;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 20px rgba(126, 255, 0, 0.25);
+            box-shadow: inset 0 0 0 1px rgba(183, 255, 60, 0.25), 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 20px rgba(126, 255, 0, 0.25);
             transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .catalog-button:hover,
         .catalog-button:focus-visible {
             background: #1a991a;
-            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 24px rgba(126, 255, 0, 0.45);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 24px rgba(126, 255, 0, 0.45);
             transform: translateY(-2px);
         }
 
         .contact-panel {
             position: fixed;
             left: 50%;
-            top: 84%;
+            top: 88%;
             z-index: 2;
             transform: translateX(-50%);
             display: flex;
@@ -159,13 +159,15 @@
             }
 
             .catalog-buttons {
-                top: 64%;
+                top: 60%;
                 width: calc(100% - 32px);
+                gap: 18px;
             }
 
             .catalog-button {
-                padding: 14px 20px;
-                font-size: 0.95rem;
+                padding: 16px 22px;
+                font-size: 1rem;
+                border-width: 2px;
             }
 
             .contact-panel {
@@ -181,7 +183,7 @@
             .whatsapp-link {
                 flex: 1;
                 justify-content: center;
-                padding: 9px 8px;
+                padding: 10px 12px;
                 font-size: 0.78rem;
             }
         }
@@ -200,6 +202,7 @@
         <a class="catalog-button" href="laptops">Ver cat&aacute;logo de laptops</a>
         <a class="catalog-button" href="laptops-gaming">Ver cat&aacute;logo de laptops Gaming</a>
     </div>
+    
     <div class="contact-panel">
         <div class="contact-title">Cont&aacute;ctanos</div>
         <div class="whatsapp-links">
