@@ -18,6 +18,10 @@
         .header-title { margin:0; font-size:20pt; font-weight:800; color:#ffffff; letter-spacing:0.5px; text-transform:uppercase; }
         .header-subtitle { margin:5px 0 0 0; font-size:11pt; color:#00ff00; font-weight:600; letter-spacing:1px; }
         .intro { margin-bottom:25px; font-size:10.5pt; color:#94a3b8; border-left:3px solid #00ff00; padding-left:10px; line-height:1.5; }
+        .catalog-menu { position:sticky; top:0; z-index:20; width:100%; margin-bottom:18px; padding:12px 0 10px; background:rgba(11,15,25,0.95); backdrop-filter:blur(14px); border-bottom:1px solid rgba(0,255,0,0.12); }
+        .catalog-menu ul { display:flex; flex-wrap:nowrap; gap:10px; margin:0; padding:0 18px; list-style:none; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:thin; }
+        .catalog-menu a { display:inline-flex; align-items:center; justify-content:center; padding:10px 14px; color:#f1f5f9; text-decoration:none; font-weight:700; font-size:0.85rem; white-space:nowrap; border:1px solid rgba(255,255,255,0.06); border-radius:999px; transition:background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+        .catalog-menu a:hover, .catalog-menu a:focus-visible { background:rgba(0,255,0,0.15); border-color:rgba(0,255,0,0.35); color:#ffffff; }
         .product-card { background:#1e293b; border:1px solid #334155; border-radius:8px; padding:15px; margin-bottom:15px; }
         .product-header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; border-bottom:1px solid #334155; padding-bottom:8px; margin-bottom:10px; }
         .product-title { font-size:12pt; margin:0; font-weight:700; color:#ffffff; }
@@ -79,8 +83,13 @@
     <div class="intro">
         Disponibilidad para entrega inmediata en Caracas. Todos nuestros equipos cuentan con <strong>1 año de garantía</strong> directa.
     </div>
+    <nav class="catalog-menu" aria-label="Menú de catálogo de laptops gaming">
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/laptops/">Laptops</a></li>
 
-    <!-- Product list generated from image -->
+        </ul>
+    </nav>
 
     <!-- 1 - AGOTADO: THUNDEROBOT ZERO 18 PRO 5090
     <div class="product-card">
@@ -217,6 +226,8 @@
         </div>
         <div class="warranty">🛡️ 1 año de garantía</div>
     </div>
+
+
 
     <!-- 5 -->
     <div class="product-card">
