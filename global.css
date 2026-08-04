@@ -48,21 +48,29 @@ body {
     box-shadow: none !important;
 }
 
-  .contact-panel {
-            position: fixed;
-            left: 50%;
-            bottom: 28px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            transform: translateX(-50%);
-            color: #f1ffe8;
-            font-weight: 800;
-            text-align: center;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
-        }
+.contact-panel{
+position: fixed;
+    left: 50%;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    gap: 10px;
+    transform: translateX(-50%);
+    color: #f1ffe8;
+    font-weight: 800;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+    width: 100%;
+    background: rgba(3, 20, 8, 0.78) !important;
+    border-color: rgba(126, 255, 0, 0.35) !important;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3), inset 0 0 24px rgba(71, 255, 0, 0.05);
+    height: 105px;
+    border-radius: 25px 25px 0px 0px;
+}
 
         .contact-title {
             font-size: 1.1rem;
