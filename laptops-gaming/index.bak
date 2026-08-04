@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="../icono.png">
-    <link rel="apple-touch-icon" href="../icono.png">
+    <link rel="icon" type="image/png" href="icono.png">
     <title>Catálogo Gaming - Mr. STREAM</title>
     <link rel="stylesheet" href="../global.css">
-    <link rel="preload" as="image" href="../fondo.webp" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" href="fondo.webp" type="image/webp" fetchpriority="high">
+
     <style>
         * { box-sizing: border-box; }
         img { max-width: 100%; height: auto; display: block; }
@@ -143,7 +143,6 @@
     </style>
 </head>
 <body>
-    <img class="bg-image" src="../fondo.webp" srcset="../fondo-mobile.webp 800w" sizes="100vw" alt="Fondo">
     <div class="header-banner">
         <h1 class="header-title">
             <img loading="lazy" src="../MrS - Logo Original.png" alt="MrS - Logo Original">
@@ -204,7 +203,7 @@
                 <h2 class="product-title">ACER NITRO V ANV15-52-57BB</h2>
                 <div class="product-meta">Marca: ACER</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.100,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.040,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core i5-13420H</div>
@@ -307,7 +306,7 @@
                 <h2 class="product-title">ACER NITRO V16 ANV16-72</h2>
                 <div class="product-meta">Marca: ACER</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.685,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.590,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core i7-1240H / Core 7 240H</div>
@@ -342,7 +341,7 @@
                 <h2 class="product-title">ACER PREDATOR HELIOS NEO 16S</h2>
                 <div class="product-meta">Marca: ACER</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.765,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.665,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core Ultra 9 275HX</div>
@@ -511,7 +510,7 @@
                 <h2 class="product-title">MSI KATANA 15 HX B14WEK-001US</h2>
                 <div class="product-meta">Marca: MSI</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.315,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.240,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core i7 14650HX</div>
@@ -545,7 +544,7 @@
                 <h2 class="product-title">MSI CYBORG 15 B2RWGKG-409US</h2>
                 <div class="product-meta">Marca: MSI</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.615,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.525,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core i7 (240H)</div>
@@ -616,7 +615,7 @@
                 <h2 class="product-title">DELL ALIENWARE 15 LDA15265</h2>
                 <div class="product-meta">Marca: DELL</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.185,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.120,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>AMD Ryzen 5 7620? (imagen: 220?)</div>
@@ -649,7 +648,7 @@
                 <h2 class="product-title">GIGABYTE GAMING A16 GA6H</h2>
                 <div class="product-meta">Marca: GIGABYTE</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.115,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.050,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core i7-13620H</div>
@@ -715,7 +714,7 @@
                 <h2 class="product-title">LENOVO LOQ 15IRX10</h2>
                 <div class="product-meta">Marca: LENOVO</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.555,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.465,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>Intel Core i7-14700HX</div>
@@ -747,7 +746,7 @@
                 <h2 class="product-title">LENOVO LOQ 15IRX08</h2>
                 <div class="product-meta">Marca: LENOVO</div>
             </div>
-            <div class="price-tag"><div class="price-value">$1.220,00</div></div>
+            <div class="price-tag"><div class="price-value">$1.150,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-label">Procesador:</div><div>AMD RYZEN 7 7840HS 3.80GHZ </div>

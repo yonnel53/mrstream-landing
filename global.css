@@ -1,14 +1,30 @@
 html {
     min-height: 100%;
-    
-    background: 
-    url('fondo.webp') center center / cover no-repeat fixed,
-    radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+    /* Use cover background but avoid forcing fixed on all browsers (iOS Safari has issues with background-attachment: fixed) */
+    background: url('fondo.webp') center center / cover no-repeat,
+                radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+    background-attachment: fixed;
 }
 
 body {
     min-height: 100vh;
     background: transparent !important;
+}
+
+/* Background image element to improve rendering on mobile Safari */
+.bg-image {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: -1;
+    pointer-events: none;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+    display: none; /* hide by default to avoid double background on desktop */
 }
 
 .header-subtitle,
@@ -119,9 +135,10 @@ position: fixed;
 
 @media (max-width: 767px) {
     html {
-        background-image: url("fondo-mobile.webp"),
-        radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
-
+        /* mobile: use a lighter mobile-optimized image and avoid fixed attachment */
+        background: url("fondo-mobile.webp") center center / cover no-repeat,
+                    radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+        background-attachment: scroll;
     }
     .catalog-button {
                 width: calc(80% - 32px);
@@ -145,4 +162,23 @@ position: fixed;
                 padding: 9px 8px;
                 font-size: 0.78rem;
             }
+}
+
+/* Workaround: iOS Safari and other mobile webviews don't handle background-attachment: fixed well.
+   Detect touch-capable WebKit and force scroll attachment to prevent broken/white backgrounds. */
+@supports (-webkit-overflow-scrolling: touch) {
+    html {
+        background-attachment: scroll !important;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    /* show bg-image only for touch-capable WebKit (iOS) */
+    .bg-image {
+        display: block !important;
+    }
+}
+
+/* also show the bg-image on small viewports (mobile) as a fallback */
+@media (max-width: 768px) {
+    .bg-image { display: block !important; }
 }
