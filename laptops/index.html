@@ -1,759 +1,470 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../icono.png">
-    <link rel="apple-touch-icon" href="../icono.png">
-    <title>Catálogo de Laptops - Mr. STREAM</title>
-    <link rel="stylesheet" href="../global.css">
-    <link rel="preload" as="image" href="../fondo.webp" type="image/webp" fetchpriority="high">
-    <style>
-        @page {
-            size: A4;
-            margin: 15mm 12mm;
-            background-color: #0b0f19; /* Deep tech dark background */
-        }
-        
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            min-width: 0;
-            max-width: 100vw;
-            overflow-x: hidden;
-        }
-
-        body {
-            margin: 0 auto;
-            max-width: 1120px;
-            padding: 18px;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #f1f5f9;
-            background-color: #0b0f19;
-            font-size: 12px;
-            line-height: 1.5;
-        }
-
-        .header-banner {
-            text-align: center;
-            position: relative;
-            left: 0;
-            width: 100%;
-            margin: 0 0 20px 0;
-            padding: 25px 18px;
-            background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
-            border-bottom: 3px solid #00FF00;
-            overflow-x: hidden;
-            box-sizing: border-box;
-            border-radius: 10px;
-        }
-
-        .header-title {
-            font-size: 20pt;
-            font-weight: 800;
-            color: #ffffff;
-            margin: 0;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .header-title img {
-            display: block;
-            width: min(100%, 380px);
-            max-width: 100%;
-            height: auto;
-            margin: 0 auto;
-        }
-        
-        .header-subtitle {
-            font-size: 11pt;
-            color: #00FF00;
-            margin: 5px 0 0 0;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .intro {
-            margin-bottom: 25px;
-            font-size: 10.5pt;
-            color: #94a3b8;
-            border-left: 3px solid #00FF00;
-            padding-left: 10px;
-        }
-
-        .catalog-menu {
-            position: sticky;
-            top: 18px;
-            z-index: 30;
-            width: 100%;
-            margin: 0 0 22px;
-            padding: 12px 18px;
-            background: rgba(11, 15, 25, 0.88);
-            backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
-        }
-
-        .catalog-menu ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
-        }
-
-        .catalog-menu ul::-webkit-scrollbar {
-            height: 7px;
-        }
-
-        .catalog-menu ul::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .catalog-menu ul::-webkit-scrollbar-thumb {
-            background: rgba(148, 163, 184, 0.45);
-            border-radius: 999px;
-        }
-
-        .catalog-menu a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 18px;
-            color: #f1f5f9;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.88rem;
-            white-space: nowrap;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.04);
-            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-        }
-
-        .catalog-menu a:hover,
-        .catalog-menu a:focus-visible {
-            background: rgba(0, 255, 0, 0.2);
-            border-color: rgba(0, 255, 0, 0.45);
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        .catalog-menu a.active {
-            background: linear-gradient(135deg, rgba(2, 132, 199, 0.95), rgba(16, 185, 129, 0.95));
-            border-color: transparent;
-            color: #ffffff;
-            box-shadow: 0 18px 35px rgba(0, 255, 0, 0.2);
-        }
-
-        /* Products Grid / List */
-        .product-card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            page-break-inside: avoid;
-        }
-
-        .product-header {
-            display: block;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 8px;
-            margin-bottom: 10px;
-        }
-
-        .product-title {
-            font-size: 12pt;
-            font-weight: bold;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .product-meta {
-            margin-top: 5px;
-            font-size: 9pt;
-            color: #00FF00;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .spec-grid {
-            display: table;
-            width: 100%;
-            margin-top: 8px;
-        }
-
-        .spec-row {
-            display: table-row;
-        }
-
-        .spec-label {
-            display: table-cell;
-            width: 120px;
-            font-weight: bold;
-            color: #94a3b8;
-            padding: 3px 0;
-            font-size: 9pt;
-        }
-
-        .spec-value {
-            display: table-cell;
-            color: #cbd5e1;
-            padding: 3px 0;
-            font-size: 9pt;
-        }
-
-        .price-tag {
-            float: right;
-            background-color: #1a991a;
-            color: #faf1f1;
-            font-weight: 800;
-            font-size: 13pt;
-            padding: 4px 12px;
-            border-radius: 4px;
-            margin-top: -5px;
-            clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
-        }
-
-        .price-tag .price-value {
-            position: relative;
-            right: 10%;
-        }
-
-        .warranty-badge {
-            display: inline-block;
-            background-color: #3b82f6;
-            color: #ffffff;
-            font-size: 8pt;
-            font-weight: bold;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-top: 5px;
-        }
-
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        .product-gallery,
-        .carousel {
-            position: relative;
-            overflow: hidden;
-            background-color: #111827;
-            border: 1px solid #334155;
-            border-radius: 12px;
-            margin-top: 16px;
-            touch-action: pan-y;
-        }
-
-        .product-gallery .gallery-track-container,
-        .carousel-track-container {
-            overflow: hidden;
-        }
-
-        .gallery-track,
-        .carousel-track {
-            display: flex;
-            transition: transform 0.35s ease;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .gallery-slide,
-        .carousel-slide {
-            min-width: 100%;
-            padding: 12px;
-            display: flex;
-            justify-content: center;
-            background: radial-gradient(circle at top left, rgba(30, 41, 59, 0.96), rgba(17, 24, 39, 0.65));
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-        }
-
-        .gallery-slide img,
-        .carousel-slide img {
-            width: 100%;
-            max-width: 450px;
-            border-radius: 14px;
-            object-fit: contain;
-            display: block;
-            cursor: pointer;
-            background: rgba(15, 23, 42, 0.92);
-            padding: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-
-        .gallery-slide img.loaded,
-        .carousel-slide img.loaded {
-            opacity: 1;
-        }
-
-        .image-frame {
-            position: relative;
-            width: 100%;
-            max-width: 450px;
-            border-radius: 14px;
-            overflow: hidden;
-            background: linear-gradient(90deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.96), rgba(15, 23, 42, 0.92));
-            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
-        }
-
-        .image-skeleton {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(15, 23, 42, 0), rgba(148, 163, 184, 0.16), rgba(15, 23, 42, 0));
-            background-size: 200% 100%;
-            animation: skeleton-shimmer 1.2s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes skeleton-shimmer {
-            from { background-position: 200% 0; }
-            to { background-position: -200% 0; }
-        }
-
-        .gallery-button,
-        .carousel-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background-color: rgba(0, 255, 0, 0.15);
-            color: #ffffff;
-            width: 40px;
-            height: 40px;
-            border-radius: 999px;
-            cursor: pointer;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            line-height: 1;
-            padding: 0;
-        }
-
-        .gallery-button:hover,
-        .carousel-button:hover {
-            background-color: rgba(0, 255, 0, 0.28);
-        }
-
-        .gallery-button.prev,
-        .carousel-button.prev {
-            left: 12px;
-        }
-
-        .gallery-button.next,
-        .carousel-button.next {
-            right: 12px;
-        }
-
-        .gallery-dots,
-        .carousel-nav {
-            text-align: center;
-            padding: 10px 0 8px;
-        }
-
-        .gallery-indicator,
-        .carousel-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 1px solid #94a3b8;
-            background: transparent;
-            margin: 0 4px;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .gallery-indicator.current-slide,
-        .carousel-indicator.current-slide {
-            background: #00FF00;
-            border-color: #00FF00;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            z-index: 1000;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-overlay img {
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 12px;
-            box-shadow: 0 0 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 18px;
-            right: 18px;
-            border: none;
-            background: rgba(0, 0, 0, 0.45);
-            color: #ffffff;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .header-banner {
-                padding: 0;
-                left: 0; /* reset full-bleed offset on tablet/mobile */
-                width: 100%;
-                text-align: center;
-            }
-
-            .header-title {
-                font-size: 18pt;
-            }
-
-            .header-subtitle {
-                font-size: 10pt;
-            }
-
-            .product-card {
-                padding: 14px;
-            }
-
-            .product-title {
-                font-size: 13pt;
-            }
-
-            .spec-label,
-            .spec-value {
-                font-size: 10pt;
-            }
-
-            .price-tag {
-            float: right;
-            background-color: #1a991a;
-            color: #faf1f1;
-            font-weight: 800;
-            font-size: 13pt;
-            padding: 4px 12px;
-            border-radius: 4px;
-            margin-top: -5px;
-            clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
-        }
-
-        .price-tag .price-value {
-            position: relative;
-            right: 10%;
-        }
-
-            .carousel-button {
-                width: 34px;
-                height: 34px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 13px;
-            }
-
-            .header-banner {
-                padding: 0;
-                left: 0;
-                width: 100%;
-                text-align: center;
-            }
-
-            .product-card {
-                padding: 12px;
-            }
-
-            .product-title {
-                font-size: 12pt;
-            }
-
-            .spec-label,
-            .spec-value {
-                font-size: 9pt;
-            }
-
-            .carousel-button {
-                width: 32px;
-                height: 32px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- fondo: se usa via CSS -->
-    <div class="header-banner">
-        <h1 class="header-title">
-            <img loading="lazy" src="../MrS - Logo Original.png" alt="MrS - Logo Original">
-        </h1>
-        <div class="header-subtitle">Catálogo Exclusivo de Laptops</div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="../icono.png" rel="icon" type="image/png"/>
+  <link href="../icono.png" rel="apple-touch-icon"/>
+  <title>
+   Catálogo de Laptops - Mr. STREAM
+  </title>
+  <link href="../global.css" rel="stylesheet"/>
+  <link href="../catalog.css" rel="stylesheet"/>
+  <link as="image" fetchpriority="high" href="../fondo.webp" rel="preload" type="image/webp"/>
+ </head>
+ <body class="catalog catalog-laptops">
+  <!-- fondo: se usa via CSS -->
+  <div class="header-banner">
+   <h1 class="header-title">
+    <a aria-label="Ir al inicio" href="/">
+     <img alt="MrS - Logo Original" loading="lazy" src="../MrS - Logo Original.png"/>
+    </a>
+   </h1>
+   <div class="header-subtitle">
+    Catálogo Exclusivo de Laptops
+   </div>
+  </div>
+  <div class="intro">
+   Disponibilidad para entrega inmediata en Caracas. Todos nuestros equipos cuentan con
+   <strong>
+    1 año de garantía
+   </strong>
+   directa.
+  </div>
+  <nav aria-label="Menú de catálogo de laptops" class="catalog-menu">
+   <ul>
+    <li>
+     <a href="/">
+      Inicio
+     </a>
+    </li>
+    <li>
+     <a href="/laptops-gaming/">
+      Laptops Gaming
+     </a>
+    </li>
+   </ul>
+  </nav>
+  <div id="inicio">
+  </div>
+  <div id="acer">
+  </div>
+  <!-- PRODUCTO 1 -->
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      ASUS Vivobook 14 (X1404VA-I712512)
+     </h2>
+     <div class="product-meta">
+      Marca: ASUS
+     </div>
     </div>
-
-    <div class="intro">
-        Disponibilidad para entrega inmediata en Caracas. Todos nuestros equipos cuentan con <strong>1 año de garantía</strong> directa.
+    <div class="price-tag">
+     <div class="price-value">
+      $515,00
+     </div>
     </div>
-
-    <nav class="catalog-menu" aria-label="Menú de catálogo de laptops">
-        <ul>
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/laptops-gaming/">Laptops Gaming</a></li>
-        
-        </ul>
-    </nav>
-
-    <div id="inicio"></div>
-    <div id="acer"></div>
-
-    <!-- PRODUCTO 1 -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$515,00</div></div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i7-1355U (13.ª Generación)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      12GB DDR4
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD de alta velocidad
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      14" Full HD (1920 x 1080)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Quiet Blue (Azul Silencioso)
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/Laptop-Vivobook-1.png" loading="lazy" src="../images/Laptop-Vivobook-1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/Laptop-Vivobook-2.png" loading="lazy" src="../images/Laptop-Vivobook-2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/Laptop-Vivobook-3.png" loading="lazy" src="../images/Laptop-Vivobook-3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!-- PRODUCTO 2 -->
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      ASUS F1605VA-WS74
+     </h2>
+     <div class="product-meta">
+      Marca: ASUS
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $780,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i7-1355U (13.ª Generación)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB RAM (2x8GB Dual Channel) DDR4
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD NVMe
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      16" Full HD Amplia
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11 Home
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Indie Black
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/ASUSF1605VA1.png" loading="lazy" src="../images/ASUSF1605VA1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/ASUSF1605VA2.png" loading="lazy" src="../images/ASUSF1605VA2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/ASUSF1605VA3.png" loading="lazy" src="../images/ASUSF1605VA3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!-- PRODUCTO 3 -->
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      ASUS Vivobook F1605VA-WS96
+     </h2>
+     <div class="product-meta">
+      Marca: ASUS
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $1.000,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i9-13900H (Hasta 5.4GHz)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB DDR4
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      1TB SSD NVMe (Ultra Capacidad)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Gráficos:
+     </div>
+     <div class="spec-value">
+      Intel Iris Xe Graphics
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      16" Full HD (1920x1080)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Cool Silver
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/F1605VA3.png" loading="lazy" src="../images/F1605VA3.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/F1605VA1.png" loading="lazy" src="../images/F1605VA1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/F1605VA2.png" loading="lazy" src="../images/F1605VA2.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      Lenovo IdeaPad Slim 3 15IRU8
+     </h2>
+     <div class="product-meta">
+      Marca: LENOVO
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $630,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i5-1335U (13.ª Generación)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      256GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" Full HD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11 Home
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Arctic Grey
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/Laptop-Lenovo-IdeaPad-Slim-3-1.png" loading="lazy" src="../images/Laptop-Lenovo-IdeaPad-Slim-3-1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/Laptop-Lenovo-IdeaPad-Slim-3-2.png" loading="lazy" src="../images/Laptop-Lenovo-IdeaPad-Slim-3-2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/Laptop-Lenovo-IdeaPad-Slim-3-3.png" loading="lazy" src="../images/Laptop-Lenovo-IdeaPad-Slim-3-3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!-- PRODUCTO 5 -->
+  <!--
+    <div class="product-card">
         <div class="product-header">
-            <h2 class="product-title">ASUS Vivobook 14 (X1404VA-I712512)</h2>
-            <div class="product-meta">Marca: ASUS</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i7-1355U (13.ª Generación)</div>
+            <div>
+                <h2 class="product-title">Lenovo IdeaPad Slim 3 15ARP10</h2>
+                <div class="product-meta">Marca: LENOVO</div>
             </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">12GB DDR4</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD de alta velocidad</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">14" Full HD (1920 x 1080)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Quiet Blue (Azul Silencioso)</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/Laptop-Vivobook-1.png" alt="Imagen 1 del modelo" data-full="../images/Laptop-Vivobook-1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/Laptop-Vivobook-2.png" alt="Imagen 2 del modelo" data-full="../images/Laptop-Vivobook-2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/Laptop-Vivobook-3.png" alt="Imagen 3 del modelo" data-full="../images/Laptop-Vivobook-3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
-    </div>
-
-    <!-- PRODUCTO 2 -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$780,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">ASUS F1605VA-WS74</h2>
-            <div class="product-meta">Marca: ASUS</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i7-1355U (13.ª Generación)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB RAM (2x8GB Dual Channel) DDR4</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD NVMe</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">16" Full HD Amplia</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11 Home</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Indie Black</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/ASUSF1605VA1.png" alt="Imagen 1 del modelo" data-full="../images/ASUSF1605VA1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/ASUSF1605VA2.png" alt="Imagen 2 del modelo" data-full="../images/ASUSF1605VA2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/ASUSF1605VA3.png" alt="Imagen 3 del modelo" data-full="../images/ASUSF1605VA3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
-    </div>
-
-    <!-- PRODUCTO 3 -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$1.000,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">ASUS Vivobook F1605VA-WS96</h2>
-            <div class="product-meta">Marca: ASUS</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i9-13900H (Hasta 5.4GHz)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB DDR4</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">1TB SSD NVMe (Ultra Capacidad)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Gráficos:</div>
-                <div class="spec-value">Intel Iris Xe Graphics</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">16" Full HD (1920x1080)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Cool Silver</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/F1605VA3.png" alt="Imagen 1 del modelo" data-full="../images/F1605VA3.png"></li>
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/F1605VA1.png" alt="Imagen 2 del modelo" data-full="../images/F1605VA1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/F1605VA2.png" alt="Imagen 3 del modelo" data-full="../images/F1605VA2.png"></li>
-                </ul>
-               
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
-    </div>
-
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$630,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Lenovo IdeaPad Slim 3 15IRU8</h2>
-            <div class="product-meta">Marca: LENOVO</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i5-1335U (13.ª Generación)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">256GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" Full HD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11 Home</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Arctic Grey</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/Laptop-Lenovo-IdeaPad-Slim-3-1.png" alt="Imagen 1 del modelo" data-full="../images/Laptop-Lenovo-IdeaPad-Slim-3-1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/Laptop-Lenovo-IdeaPad-Slim-3-2.png" alt="Imagen 2 del modelo" data-full="../images/Laptop-Lenovo-IdeaPad-Slim-3-2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/Laptop-Lenovo-IdeaPad-Slim-3-3.png" alt="Imagen 3 del modelo" data-full="../images/Laptop-Lenovo-IdeaPad-Slim-3-3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
-    </div>
-    <!-- PRODUCTO 5 -->
-    <!--
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$740,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Lenovo IdeaPad Slim 3 15ARP10</h2>
-            <div class="product-meta">Marca: LENOVO</div>
+            <div class="price-tag"><div class="price-value">$740,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-row">
@@ -801,115 +512,213 @@
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
     -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$590,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Dell Inspiron 3530-5623BLK</h2>
-            <div class="product-meta">Marca: DELL</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i5-1334U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">8GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" Full HD (1920 x 1080) Touchscreen</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Black</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dell1.png" alt="Imagen 1 del modelo" data-full="../images/dell1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell3.png" alt="Imagen 3 del modelo" data-full="../images/dell3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      Dell Inspiron 3530-5623BLK
+     </h2>
+     <div class="product-meta">
+      Marca: DELL
+     </div>
     </div>
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$670,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Dell 15 DC15250</h2>
-            <div class="product-meta">Marca: DELL</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i5-1334U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" Full HD (1920 x 1080)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Carbon Black</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dell1.png" alt="Imagen 1 del modelo" data-full="../images/dell1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell3.png" alt="Imagen 3 del modelo" data-full="../images/dell3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="price-tag">
+     <div class="price-value">
+      $590,00
+     </div>
     </div>
- <!--
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i5-1334U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      8GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" Full HD (1920 x 1080) Touchscreen
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Black
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/dell1.png" loading="lazy" src="../images/dell1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/dell2.png" loading="lazy" src="../images/dell2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/dell3.png" loading="lazy" src="../images/dell3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      Dell 15 DC15250
+     </h2>
+     <div class="product-meta">
+      Marca: DELL
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $670,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i5-1334U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" Full HD (1920 x 1080)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Carbon Black
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/dell1.png" loading="lazy" src="../images/dell1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/dell2.png" loading="lazy" src="../images/dell2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/dell3.png" loading="lazy" src="../images/dell3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!--
     
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$620,10</div></div>
+    <div class="product-card">
         <div class="product-header">
-            <h2 class="product-title">Acer Aspire AG15-42P-R917</h2>
-            <div class="product-meta">Marca: ACER</div>
+            <div>
+                <h2 class="product-title">Acer Aspire AG15-42P-R917</h2>
+                <div class="product-meta">Marca: ACER</div>
+            </div>
+            <div class="price-tag"><div class="price-value">$620,10</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-row">
@@ -957,456 +766,868 @@
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 -->
-    <!-- PRODUCTO 7 -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$640,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Dell Inspiron 3593 Touchscreen</h2>
-            <div class="product-meta">Marca: DELL</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i7-1065G7</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">12GB DDR4</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" con tecnología Touchscreen (Táctil)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11 (Actualizado de Win10)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Black (Negro Elegante)</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dell1.png" alt="Imagen 1 del modelo" data-full="../images/dell1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell3.png" alt="Imagen 3 del modelo" data-full="../images/dell3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+  <!-- PRODUCTO 7 -->
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      Dell Inspiron 3593 Touchscreen
+     </h2>
+     <div class="product-meta">
+      Marca: DELL
+     </div>
     </div>
-
-    <!-- PRODUCTO 8 -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$630,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">HP Laptop 15-FD2050WM Touchscreen</h2>
-            <div class="product-meta">Marca: HP</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core Ultra 5 225U (Nueva Generación)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">8GB DDR5 SDRAM (Última tecnología de memoria)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" FHD IPS LED Multi-Touch (Táctil capacitivo)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/hp1.png" alt="Imagen 1 del modelo" data-full="../images/hp1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp2.png" alt="Imagen 2 del modelo" data-full="../images/hp2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp3.png" alt="Imagen 3 del modelo" data-full="../images/hp3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="price-tag">
+     <div class="price-value">
+      $640,00
+     </div>
     </div>
-
-    <!-- PRODUCTO 9 -->
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$735,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">HP 15-FD0557NR</h2>
-            <div class="product-meta">Marca: HP</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i7-1255U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">12GB DDR4 RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD M.2 (Super veloz)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" FHD IPS Display</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Gris</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/hp1.png" alt="Imagen 1 del modelo" data-full="../images/hp1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp2.png" alt="Imagen 2 del modelo" data-full="../images/hp2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp3.png" alt="Imagen 3 del modelo" data-full="../images/hp3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i7-1065G7
+     </div>
     </div>
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$945,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">DYNABOOK PORTEGE Z40L-N</h2>
-            <div class="product-meta">Marca: DYNABOOK</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core Ultra 7 258V</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">32GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">1TB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">14" (1920 x 1200)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11 Pro</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/loq1.png" alt="Imagen 1 del modelo" data-full="../images/loq1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/loq2.png" alt="Imagen 2 del modelo" data-full="../images/loq2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/loq3.png" alt="Imagen 3 del modelo" data-full="../images/loq3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      12GB DDR4
+     </div>
     </div>
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$620,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">HP 17-CN3057NR</h2>
-            <div class="product-meta">Marca: HP</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i5-120U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">8GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">256GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">17.3"</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/hp1.png" alt="Imagen 1 del modelo" data-full="../images/hp1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp2.png" alt="Imagen 2 del modelo" data-full="../images/hp2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp3.png" alt="Imagen 3 del modelo" data-full="../images/hp3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD
+     </div>
     </div>
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$985,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">HP OMNIBOOK X FLIP 16-AS0023DX</h2>
-            <div class="product-meta">Marca: HP</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core Ultra 7 256V</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB DDR5</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">1TB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">16" 2K (1920 x 1200) IPS Touchscreen</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/hp1.png" alt="Imagen 1 del modelo" data-full="../images/hp1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp2.png" alt="Imagen 2 del modelo" data-full="../images/hp2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/hp3.png" alt="Imagen 3 del modelo" data-full="../images/hp3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" con tecnología Touchscreen (Táctil)
+     </div>
     </div>
- <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$835,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">LAPTOP DELL LDC15250-7427BLK-PUS</h2>
-            <div class="product-meta">Marca: Dell</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core i7-1355U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB RAM (Excelente multitarea)</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512 GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" FHD Pantalla Táctil</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11 Home</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dellldc1.png" alt="Imagen 1 del modelo" data-full="../images/dellldc1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dellldc2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dellldc3.png" alt="Imagen 3 del modelo" data-full="../images/dellldc3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11 (Actualizado de Win10)
+     </div>
     </div>
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$720,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Dell 15 DC15255</h2>
-            <div class="product-meta">Marca: DELL</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">AMD Ryzen 7 7730U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">512GB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" Full HD (1920 x 1080) Touchscreen</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Black</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dell1.png" alt="Imagen 1 del modelo" data-full="../images/dell1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell3.png" alt="Imagen 3 del modelo" data-full="../images/dell3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Black (Negro Elegante)
+     </div>
     </div>
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$905,00</div></div>
-        <div class="product-header">
-            <h2 class="product-title">Dell 15 D15260</h2>
-            <div class="product-meta">Marca: DELL</div>
-        </div>
-        <div class="spec-grid">
-            <div class="spec-row">
-                <div class="spec-label">Procesador:</div>
-                <div class="spec-value">Intel Core Ultra 7 255U</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Memoria RAM:</div>
-                <div class="spec-value">16GB RAM</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Almacenamiento:</div>
-                <div class="spec-value">1TB SSD</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Pantalla:</div>
-                <div class="spec-value">15.6" (1920 x 1200) Touchscreen</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Sistema Operativo:</div>
-                <div class="spec-value">Windows 11</div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-label">Color:</div>
-                <div class="spec-value">Carbon Black</div>
-            </div>
-        </div>
-
-        <div class="product-gallery">
-            <div class="gallery-track-container">
-                <ul class="gallery-track">
-                    <li class="gallery-slide current-slide"><img loading="lazy" src="../images/dell1.png" alt="Imagen 1 del modelo" data-full="../images/dell1.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell2.png" alt="Imagen 2 del modelo" data-full="../images/dell2.png"></li>
-                    <li class="gallery-slide"><img loading="lazy" src="../images/dell3.png" alt="Imagen 3 del modelo" data-full="../images/dell3.png"></li>
-                </ul>
-            </div>
-            <button class="gallery-button prev" type="button" aria-label="Imagen anterior">‹</button>
-            <button class="gallery-button next" type="button" aria-label="Imagen siguiente">›</button>
-            <div class="gallery-dots">
-                <button class="gallery-indicator current-slide" type="button" aria-label="Imagen 1"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 2"></button>
-                <button class="gallery-indicator" type="button" aria-label="Imagen 3"></button>
-            </div>
-        </div>
-        <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/dell1.png" loading="lazy" src="../images/dell1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/dell2.png" loading="lazy" src="../images/dell2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/dell3.png" loading="lazy" src="../images/dell3.png"/>
+      </li>
+     </ul>
     </div>
-    <!-- PRODUCTO 10 
-    <div class="product-card clearfix">
-        <div class="price-tag"><div class="price-value">$371,00</div></div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!-- PRODUCTO 8 -->
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      HP Laptop 15-FD2050WM Touchscreen
+     </h2>
+     <div class="product-meta">
+      Marca: HP
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $630,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core Ultra 5 225U (Nueva Generación)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      8GB DDR5 SDRAM (Última tecnología de memoria)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" FHD IPS LED Multi-Touch (Táctil capacitivo)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/hp1.png" loading="lazy" src="../images/hp1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/hp2.png" loading="lazy" src="../images/hp2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/hp3.png" loading="lazy" src="../images/hp3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!-- PRODUCTO 9 -->
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      HP 15-FD0557NR
+     </h2>
+     <div class="product-meta">
+      Marca: HP
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $735,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i7-1255U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      12GB DDR4 RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD M.2 (Super veloz)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" FHD IPS Display
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Gris
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/hp1.png" loading="lazy" src="../images/hp1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/hp2.png" loading="lazy" src="../images/hp2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/hp3.png" loading="lazy" src="../images/hp3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      DYNABOOK PORTEGE Z40L-N
+     </h2>
+     <div class="product-meta">
+      Marca: DYNABOOK
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $945,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core Ultra 7 258V
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      32GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      1TB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      14" (1920 x 1200)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11 Pro
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/loq1.png" loading="lazy" src="../images/loq1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/loq2.png" loading="lazy" src="../images/loq2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/loq3.png" loading="lazy" src="../images/loq3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      HP 17-CN3057NR
+     </h2>
+     <div class="product-meta">
+      Marca: HP
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $620,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i5-120U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      8GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      256GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      17.3"
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/hp1.png" loading="lazy" src="../images/hp1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/hp2.png" loading="lazy" src="../images/hp2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/hp3.png" loading="lazy" src="../images/hp3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      HP OMNIBOOK X FLIP 16-AS0023DX
+     </h2>
+     <div class="product-meta">
+      Marca: HP
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $985,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core Ultra 7 256V
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB DDR5
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      1TB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      16" 2K (1920 x 1200) IPS Touchscreen
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/hp1.png" loading="lazy" src="../images/hp1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/hp2.png" loading="lazy" src="../images/hp2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/hp3.png" loading="lazy" src="../images/hp3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      LAPTOP DELL LDC15250-7427BLK-PUS
+     </h2>
+     <div class="product-meta">
+      Marca: Dell
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $835,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core i7-1355U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB RAM (Excelente multitarea)
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512 GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" FHD Pantalla Táctil
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11 Home
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/dellldc1.png" loading="lazy" src="../images/dellldc1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/dell2.png" loading="lazy" src="../images/dellldc2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/dellldc3.png" loading="lazy" src="../images/dellldc3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      Dell 15 DC15255
+     </h2>
+     <div class="product-meta">
+      Marca: DELL
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $720,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      AMD Ryzen 7 7730U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      512GB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" Full HD (1920 x 1080) Touchscreen
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Black
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/dell1.png" loading="lazy" src="../images/dell1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/dell2.png" loading="lazy" src="../images/dell2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/dell3.png" loading="lazy" src="../images/dell3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <div class="product-card">
+   <div class="product-header">
+    <div>
+     <h2 class="product-title">
+      Dell 15 D15260
+     </h2>
+     <div class="product-meta">
+      Marca: DELL
+     </div>
+    </div>
+    <div class="price-tag">
+     <div class="price-value">
+      $905,00
+     </div>
+    </div>
+   </div>
+   <div class="spec-grid">
+    <div class="spec-row">
+     <div class="spec-label">
+      Procesador:
+     </div>
+     <div class="spec-value">
+      Intel Core Ultra 7 255U
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Memoria RAM:
+     </div>
+     <div class="spec-value">
+      16GB RAM
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Almacenamiento:
+     </div>
+     <div class="spec-value">
+      1TB SSD
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Pantalla:
+     </div>
+     <div class="spec-value">
+      15.6" (1920 x 1200) Touchscreen
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Sistema Operativo:
+     </div>
+     <div class="spec-value">
+      Windows 11
+     </div>
+    </div>
+    <div class="spec-row">
+     <div class="spec-label">
+      Color:
+     </div>
+     <div class="spec-value">
+      Carbon Black
+     </div>
+    </div>
+   </div>
+   <div class="product-gallery">
+    <div class="gallery-track-container">
+     <ul class="gallery-track">
+      <li class="gallery-slide current-slide">
+       <img alt="Imagen 1 del modelo" data-full="../images/dell1.png" loading="lazy" src="../images/dell1.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 2 del modelo" data-full="../images/dell2.png" loading="lazy" src="../images/dell2.png"/>
+      </li>
+      <li class="gallery-slide">
+       <img alt="Imagen 3 del modelo" data-full="../images/dell3.png" loading="lazy" src="../images/dell3.png"/>
+      </li>
+     </ul>
+    </div>
+    <button aria-label="Imagen anterior" class="gallery-button prev" type="button">
+     ‹
+    </button>
+    <button aria-label="Imagen siguiente" class="gallery-button next" type="button">
+     ›
+    </button>
+    <div class="gallery-dots">
+     <button aria-label="Imagen 1" class="gallery-indicator current-slide" type="button">
+     </button>
+     <button aria-label="Imagen 2" class="gallery-indicator" type="button">
+     </button>
+     <button aria-label="Imagen 3" class="gallery-indicator" type="button">
+     </button>
+    </div>
+   </div>
+   <div class="warranty-badge">
+    🛡️ 1 Año de Garantía
+   </div>
+  </div>
+  <!-- PRODUCTO 10 
+    <div class="product-card">
         <div class="product-header">
-            <h2 class="product-title">Compaq QL15R3HE16256</h2>
-            <div class="product-meta">Marca: COMPAQ</div>
+            <div>
+                <h2 class="product-title">Compaq QL15R3HE16256</h2>
+                <div class="product-meta">Marca: COMPAQ</div>
+            </div>
+            <div class="price-tag"><div class="price-value">$371,00</div></div>
         </div>
         <div class="spec-grid">
             <div class="spec-row">
@@ -1450,35 +1671,43 @@
         <div class="warranty-badge">🛡️ 1 Año de Garantía</div>
     </div>
 -->
-         <div class="contact-panel">
-            <div class="contact-title">Cont&aacute;ctanos</div>
-            <div class="whatsapp-links">
-                <a class="whatsapp-link" href="https://wa.me/584149295884" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp al +58 414 9295884">
-                <span class="whatsapp-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
-                    </svg></span>
-                    <span>+58 414 9295884</span>
-                </a>
-                <a class="whatsapp-link" href="https://wa.me/584126335854" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp al +58 412 6335854">
-                <span class="whatsapp-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path>
-                    </svg></span>
-                    <span>+58 412 6335854</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-     
-
-    <div class="modal-overlay" id="image-modal" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
-        <button class="modal-close" id="modal-close" aria-label="Cerrar imagen">×</button>
-        <img loading="lazy" id="modal-image" src="" alt="Imagen ampliada" />
-    </div>
-
-    
-    <script>
-        const modalOverlay = document.getElementById('image-modal');
+  <div class="contact-panel">
+   <div class="contact-title">
+    Contáctanos
+   </div>
+   <div class="whatsapp-links">
+    <a aria-label="Contactar por WhatsApp al +58 414 9295884" class="whatsapp-link" href="https://wa.me/584149295884" rel="noopener" target="_blank">
+     <span aria-hidden="true" class="whatsapp-icon">
+      <svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z">
+       </path>
+      </svg>
+     </span>
+     <span>
+      +58 414 9295884
+     </span>
+    </a>
+    <a aria-label="Contactar por WhatsApp al +58 412 6335854" class="whatsapp-link" href="https://wa.me/584126335854" rel="noopener" target="_blank">
+     <span aria-hidden="true" class="whatsapp-icon">
+      <svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20">
+       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z">
+       </path>
+      </svg>
+     </span>
+     <span>
+      +58 412 6335854
+     </span>
+    </a>
+   </div>
+  </div>
+  <div aria-label="Imagen ampliada" aria-modal="true" class="modal-overlay" id="image-modal" role="dialog">
+   <button aria-label="Cerrar imagen" class="modal-close" id="modal-close">
+    ×
+   </button>
+   <img alt="Imagen ampliada" id="modal-image" loading="lazy" src=""/>
+  </div>
+  <script>
+   const modalOverlay = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
         const modalClose = document.getElementById('modal-close');
         const placeholderImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
@@ -1632,5 +1861,6 @@
                 });
             });
         });
-
-</script>
+  </script>
+ </body>
+</html>

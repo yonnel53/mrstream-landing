@@ -1,13 +1,30 @@
 html {
     min-height: 100%;
-    /* Use cover background but avoid forcing fixed on all browsers (iOS Safari has issues with background-attachment: fixed) */
-    background: url('fondo.webp') center center / cover no-repeat,
-                radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+    min-width: 100%;
+    background-image: url('fondo.webp'), radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-attachment: fixed;
+    background-color: #0b0f19;
+}
+
+@media (max-width: 767px) {
+    html {
+        /* mobile: use a lighter mobile-optimized image and avoid fixed attachment */
+        background-image: url("fondo-mobile.webp"), radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+        background-position: center top, center center;
+        background-size: 100% auto, cover;
+        background-repeat: no-repeat;
+        background-attachment: scroll !important;
+        background-color: #0b0f19;
+        background-clip: border-box;
+    }
 }
 
 body {
     min-height: 100vh;
+    min-width: 100vw;
     background: transparent !important;
 }
 
@@ -122,32 +139,37 @@ position: fixed;
 @media (max-width: 767px) {
     html {
         /* mobile: use a lighter mobile-optimized image and avoid fixed attachment */
-        background: url("fondo-mobile.webp") center center / cover no-repeat,
-                    radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
-        background-attachment: scroll;
+        background-image: url("fondo-mobile.webp"), radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
+        background-position: center top, center center;
+        background-size: 100% auto, cover;
+        background-repeat: no-repeat;
+        background-attachment: scroll !important;
+        background-color: #0b0f19;
+        background-clip: border-box;
     }
+
     .catalog-button {
-                width: calc(80% - 32px);
-                bottom: 175px;
-                padding: 16px 5px;
-            }
+        width: calc(80% - 32px);
+        bottom: 175px;
+        padding: 16px 5px;
+    }
 
-            .contact-panel {
-                bottom: 18px;
-                width: 100%;
-            }
+    .contact-panel {
+        bottom: 18px;
+        width: 100%;
+    }
 
-            .whatsapp-links {
-                width: calc(100% - 32px);
-                justify-content: center;
-            }
+    .whatsapp-links {
+        width: calc(100% - 32px);
+        justify-content: center;
+    }
 
-            .whatsapp-link {
-                flex: 1;
-                justify-content: center;
-                padding: 9px 8px;
-                font-size: 0.78rem;
-            }
+    .whatsapp-link {
+        flex: 1;
+        justify-content: center;
+        padding: 9px 8px;
+        font-size: 0.78rem;
+    }
 }
 
 /* Workaround: iOS Safari and other mobile webviews don't handle background-attachment: fixed well.
