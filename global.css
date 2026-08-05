@@ -10,15 +10,23 @@ html {
 }
 
 @media (max-width: 767px) {
-    html {
+    /* 1. Mueve el estilo al body (o pon ambos si prefieres), no solo al html */
+    body {
         /* mobile: use a lighter mobile-optimized image and avoid fixed attachment */
         background-image: url("fondo-mobile.webp"), radial-gradient(ellipse at center, #047806 0%, #023803 50%, #000501 100%);
         background-position: center top, center center;
-        background-size: 100% auto, cover;
+        
+        /* 2. Cambia '100% auto' por 'cover' para que preserve la proporción */
+        background-size: cover, cover;
+        
         background-repeat: no-repeat;
-        background-attachment: scroll !important;
+        
+        /* 3. Asegura que el attachment sea scroll en Safari */
+        background-attachment: scroll, scroll !important;
         background-color: #0b0f19;
-        background-clip: border-box;
+        
+        /* 4. Asegura la altura mínima según la pantalla en iOS */
+        min-height: 100dvh;
     }
 }
 
